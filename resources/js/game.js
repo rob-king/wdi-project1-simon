@@ -1,12 +1,24 @@
 const colors = ['red', 'blue', 'yellow', 'green'];
+var round = {
+  simon:{colors:[]},
+  player:{colors:[]}
+};
 
 $(document).ready(function() {
-  console.log("jquery working");
-
   $("body").on("keydown", getKeyCode);
+  $("body").on("keydown", getKeyColor);
 
-  base = sequence(3);
+  round.simon.colors = generateRound(sequence(3),0);
+  console.log(round.simon.colors);
+  setTimeout(function() {
+    console.log(compare(round.player.colors, round.simon.colors));
+  }, 30000);
 });
+
+
+function compare(player, simon) {
+  return _.difference(player, simon);
+}
 
 function sequence(n) {
   var result = [];
