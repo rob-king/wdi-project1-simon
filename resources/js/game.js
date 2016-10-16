@@ -1,16 +1,38 @@
 const colors = ['red', 'blue', 'yellow', 'green'];
+
 var round = {
-  simon:{colors:[]},
-  player:{colors:[]},
+  simon:{sequence:[]},
+  player:{sequence:[]},
   winner:"",
+  roundNumber: 0,
   checkResult: function() {
-    if (compare(this.player.colors, this.simon.colors).length === 0) {
+    if (compare(this.player.sequence, this.simon.sequence).length === 0) {
       console.log("winner!");
       this.winner = "player";
     } else {
       console.log("You lose");
       this.winner =  "simon";
     }
+  },
+  startGame: function() {
+    this.simon.sequence = generateRound(sequence(3),0);
+    this.player.sequence = [];
+    this.winner = "";
+  },
+  nextRound: function() {
+    this.simon.sequence = generate(this.simon.sequence, this.roundNumber);
+    this.plaer.sequence =  [];
+  },
+  displaySequence: function () {
+    console.log(this.simon.sequence);
+  },
+  enableInput: function() {
+    $("body").on("keydown", getKeyCode);
+    $("body").on("keydown", getKeyColor);
+  },
+  disableInput: function() {
+    $("body").off("keydown", getKeyCode);
+    $("body").off("keydown", getKeyColor);
   }
 };
 
@@ -18,12 +40,19 @@ $(document).ready(function() {
   $("body").on("keydown", getKeyCode);
   $("body").on("keydown", getKeyColor);
 
-  round.simon.colors = generateRound(sequence(3),0);
-  console.log(round.simon.colors);
-  setTimeout(function() {
-    console.log(compare(round.player.colors, round.simon.colors));
+  round.startGame();
+  round.displaySequence();
+
+  setTimeout(function () {
     round.checkResult();
   }, 15000);
+
+  // round.simon.colors = generateRound(sequence(3),0);
+  // console.log(round.simon.colors);
+  // setTimeout(function() {
+  //   console.log(compare(round.player.colors, round.simon.colors));
+  //   round.checkResult();
+  // }, 15000);
 });
 
 function compare(player, simon) {

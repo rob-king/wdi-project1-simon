@@ -16,7 +16,7 @@ function getKeyColor(evt) {
   evt.preventDefault();
   if (_.has(controls, evt.keyCode)) {
     color = controls[evt.keyCode].color;
-    round.player.colors.push(color);
+    round.player.sequence.push(color);
     return color;
   }
 }
