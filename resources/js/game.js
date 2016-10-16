@@ -1,7 +1,17 @@
 const colors = ['red', 'blue', 'yellow', 'green'];
 var round = {
   simon:{colors:[]},
-  player:{colors:[]}
+  player:{colors:[]},
+  winner:"",
+  checkResult: function() {
+    if (compare(this.player.colors, this.simon.colors).length === 0) {
+      console.log("winner!");
+      this.winner = "player";
+    } else {
+      console.log("You lose");
+      this.winner =  "simon";
+    }
+  }
 };
 
 $(document).ready(function() {
@@ -12,9 +22,9 @@ $(document).ready(function() {
   console.log(round.simon.colors);
   setTimeout(function() {
     console.log(compare(round.player.colors, round.simon.colors));
-  }, 30000);
+    round.checkResult();
+  }, 15000);
 });
-
 
 function compare(player, simon) {
   return _.difference(player, simon);
