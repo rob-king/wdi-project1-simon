@@ -72,7 +72,6 @@ var round = {
   }
 };
 
-
 $(document).ready(function() {
   round.startGame();
 });
