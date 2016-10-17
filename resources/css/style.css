@@ -11,6 +11,10 @@ ul, li {
   opacity: 1 !important;
 }
 
+.controls {
+  margin: 0 auto;
+}
+
 .simon {
   background: #555;
   position: relative;
