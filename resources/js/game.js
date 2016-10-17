@@ -22,9 +22,6 @@ var round = {
     this.winner = "";
     this.displaySequence();
     this.enableInput();
-    setTimeout(function () {
-      round.checkResult();
-    }, 15000);
   },
   nextRound: function() {
     this.disableInput();
@@ -33,9 +30,6 @@ var round = {
     this.player.sequence =  [];
     this.displaySequence();
     this.enableInput();
-    setTimeout(function () {
-      round.checkResult();
-    }, 15000);
   },
   displaySequence: function () {
     console.log(this.simon.sequence);
@@ -52,11 +46,29 @@ var round = {
     $("body").on("keydown", getKeyCode);
     $("body").on("keydown", getKeyColor);
     $("body").on("keyup", clearColor);
+
+    var that = this;
+
+    var defaultTimeout = setTimeout(function() {
+      that.checkResult();
+    }, 120000);
+
+    var inputPolling = setInterval(function() {
+      if (that.player.sequence.length > 0) {
+        if (that.simon.sequence.length === that.player.sequence.length)
+        {
+          that.checkResult();
+          clearTimeout(defaultTimeout);
+          clearTimeout(inputPolling);
+        }
+      }
+    }, 100);
+
   },
   disableInput: function() {
     $("body").off("keydown", getKeyCode);
     $("body").off("keydown", getKeyColor);
-    $("body").on("keyup", clearColor);
+    $("body").off("keyup", clearColor);
   }
 };
 
@@ -64,7 +76,6 @@ var round = {
 $(document).ready(function() {
   round.startGame();
 });
-
 
 function compare(simon, player) {
   return _.isEqual(simon, player);
