@@ -39,7 +39,7 @@ var round = {
         setTimeout(function() {
           $(`.${element}`).toggleClass("active");
         }, 300 * index + 120)
-      }, 600 * index + 100);
+      }, 600 * index + 150);
     }
   )},
   enableInput: function() {
