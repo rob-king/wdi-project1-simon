@@ -17,6 +17,16 @@ function getKeyColor(evt) {
   if (_.has(controls, evt.keyCode)) {
     color = controls[evt.keyCode].color;
     round.player.sequence.push(color);
+    $(`.${color}`).addClass('active');
     return color;
   }
+}
+
+function clearColor(evt) {
+  evt.preventDefault();
+  if (_.has(controls, evt.keyCode)) {
+    color = controls[evt.keyCode].color;
+    $(`.${color}`).removeClass('active');
+  }
+
 }

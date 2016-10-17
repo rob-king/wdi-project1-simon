@@ -30,7 +30,7 @@ ul, li {
 }
 
 .tile {
-  opacity: 0.6;
+  opacity: 0.4;
   -webkit-transition: opacity 250ms ease;
   -moz-transition: opacity 250ms ease;
   -ms-transition: opacity 250ms ease;

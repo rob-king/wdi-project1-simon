@@ -6,57 +6,68 @@ var round = {
   winner:"",
   roundNumber: 0,
   checkResult: function() {
-    if (compare(this.player.sequence, this.simon.sequence).length === 0) {
+    if (compare(this.simon.sequence, this.player.sequence)) {
       console.log("winner!");
       this.winner = "player";
+      this.nextRound();
     } else {
       console.log("You lose");
       this.winner =  "simon";
+      this.disableInput();
     }
   },
   startGame: function() {
     this.simon.sequence = generateRound(sequence(3),0);
     this.player.sequence = [];
     this.winner = "";
+    this.displaySequence();
+    this.enableInput();
+    setTimeout(function () {
+      round.checkResult();
+    }, 15000);
   },
   nextRound: function() {
-    this.simon.sequence = generate(this.simon.sequence, this.roundNumber);
-    this.plaer.sequence =  [];
+    this.disableInput();
+    this.roundNumber++;
+    this.simon.sequence = generateRound(this.simon.sequence, 1);
+    this.player.sequence =  [];
+    this.displaySequence();
+    this.enableInput();
+    setTimeout(function () {
+      round.checkResult();
+    }, 15000);
   },
   displaySequence: function () {
     console.log(this.simon.sequence);
-  },
+    this.simon.sequence.forEach(function(element, index) {
+      setTimeout(function() {
+        $(`.${element}`).toggleClass("active");
+        setTimeout(function() {
+          $(`.${element}`).toggleClass("active");
+        }, 300 * index + 120)
+      }, 600 * index + 100);
+    }
+  )},
   enableInput: function() {
     $("body").on("keydown", getKeyCode);
     $("body").on("keydown", getKeyColor);
+    $("body").on("keyup", clearColor);
   },
   disableInput: function() {
     $("body").off("keydown", getKeyCode);
     $("body").off("keydown", getKeyColor);
+    $("body").on("keyup", clearColor);
   }
 };
 
+
 $(document).ready(function() {
-  $("body").on("keydown", getKeyCode);
-  $("body").on("keydown", getKeyColor);
-
   round.startGame();
-  round.displaySequence();
-
-  setTimeout(function () {
-    round.checkResult();
-  }, 15000);
-
-  // round.simon.colors = generateRound(sequence(3),0);
-  // console.log(round.simon.colors);
-  // setTimeout(function() {
-  //   console.log(compare(round.player.colors, round.simon.colors));
-  //   round.checkResult();
-  // }, 15000);
 });
 
-function compare(player, simon) {
-  return _.difference(player, simon);
+
+function compare(simon, player) {
+  return _.isEqual(simon, player);
 }
 
 function sequence(n) {
