@@ -97,3 +97,13 @@ ul, li {
   clip: rect(150px, 300px, 300px, 150px);
   width: 296px;
 }
+
+#game_over {
+  color: red;
+  font-size: 50px;
+}
+
+.hidden {
+  display: none;
+  visibility: hidden;
+}

@@ -14,6 +14,7 @@ var round = {
       console.log("You lose");
       this.winner =  "simon";
       this.disableInput();
+      this.displayLossToggle();
     }
   },
   startGame: function() {
@@ -47,6 +48,9 @@ var round = {
   )},
   displayRound: function() {
     $(".round").text(`Round: ${this.roundNumber}`);
+  },
+  displayLossToggle: function() {
+    $("#game_over").toggleClass("hidden");
   },
   enableInput: function() {
     $("body").on("keydown", getKeyCode);
