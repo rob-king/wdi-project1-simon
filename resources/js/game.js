@@ -38,10 +38,13 @@ var round = {
         $(`.${element}`).toggleClass("active");
         setTimeout(function() {
           $(`.${element}`).toggleClass("active");
-        }, 300 * index + 120)
-      }, 600 * index + 150);
+        }, 60 * index + 50)
+      }, 800 * index + 200);
     }
   )},
+  displayRound: function() {
+    $("")
+  },
   enableInput: function() {
     $("body").on("keydown", getKeyCode);
     $("body").on("keydown", getKeyColor);
@@ -73,7 +76,7 @@ var round = {
 };
 
 $(document).ready(function() {
-  round.startGame();
+  $("#startGame").on("click", round.startGame.bind(round));
 });
 
 function compare(simon, player) {

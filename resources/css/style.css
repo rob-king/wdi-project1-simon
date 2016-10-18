@@ -11,15 +11,32 @@ ul, li {
   opacity: 1 !important;
 }
 
-.controls {
-  margin: 0 auto;
+.info  {
+  border: 2px black dashed;
+  padding: 10px;
+  width: 400px;
+  height: 450px;
+}
+
+.scorebox {
+  width: 200px;
+  height: 250px;
+}
+.flexcontainer {
+   display: -webkit-flex;
+   display: flex;
+   -webkit-flex-direction: row;
+   flex-direction: row;
+   -webkit-align-items: center;
+   align-items: center;
+   -webkit-justify-content: center;
+   justify-content: center;
 }
 
 .simon {
-  background: #555;
+  background: #444;
   position: relative;
-  float: center;
-  margin: 0 auto;
+  margin: 50px;
   width: 300px;
   height: 295px;
   -webkit-border-radius: 150px 150px 150px 150px;
@@ -56,12 +73,6 @@ ul, li {
   position: absolute;
 }
 
-.red:hover,
-.blue:hover,
-.yellow:hover,
-.green:hover {
-  border: 4px solid white
-}
 
 .red {
   background: red;
@@ -82,11 +93,7 @@ ul, li {
 }
 
 .green {
-  background: green;
+  background: LimeGreen;
   clip: rect(150px, 300px, 300px, 150px);
   width: 296px;
-}
-
-.hoverable:hover {
-  cursor: pointer;
 }

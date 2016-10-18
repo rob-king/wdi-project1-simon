@@ -8,16 +8,23 @@
   <link rel="stylesheet" href="resources/css/style.css" media="screen" title="no title">
 </head>
 <body>
-  <div class="simon">
-    <ul>
-      <li class="tile red"></li>
-      <li class="tile blue"></li>
-      <li class="tile yellow"></li>
-      <li class="tile green"></li>
-    </ul>
-  </div>
-  <div class="controls">
-    <a href="#" id="startGame"><p>start game</p></a>
+  <div class="flexcontainer">
+    <div class="simon">
+      <ul>
+        <li class="tile red"></li>
+        <li class="tile blue"></li>
+        <li class="tile yellow"></li>
+        <li class="tile green"></li>
+      </ul>
+    </div>
+    <div class="info">
+      <a href="#" id="startGame"><p>start game</p></a>
+      <h3>Controls:</h3>
+      <p>the arrow keys map to the corresponding color on simon.</p>
+      <h3>Cheat code:</h3>
+      <p>Control + Shift  + I </p>
+      <h2 class="round">Round: 0</h2>
+    </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
   <script src="https://cdn.jsdelivr.net/lodash/4.16.4/lodash.min.js" charset="utf-8"></script>
