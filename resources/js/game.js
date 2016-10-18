@@ -18,6 +18,7 @@ var round = {
     }
   },
   startGame: function() {
+    this.displayReset();
     this.simon.sequence = generateRound(sequence(3),0);
     this.player.sequence = [];
     this.winner = "";
@@ -51,6 +52,13 @@ var round = {
   },
   displayLossToggle: function() {
     $("#game_over").toggleClass("hidden");
+  },
+  displayReset: function() {
+    $("#game_over").addClass("hidden")
+    $(".tile").each(function(index,elm) {
+      $(elm).removeClass("active");
+      console.log(elm)
+    });
   },
   enableInput: function() {
     $("body").on("keydown", getKeyCode);
