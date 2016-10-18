@@ -4,7 +4,7 @@ var round = {
   simon:{sequence:[]},
   player:{sequence:[]},
   winner:"",
-  roundNumber: 0,
+  roundNumber: 1,
   checkResult: function() {
     if (compare(this.simon.sequence, this.player.sequence)) {
       console.log("winner!");
@@ -20,12 +20,15 @@ var round = {
     this.simon.sequence = generateRound(sequence(3),0);
     this.player.sequence = [];
     this.winner = "";
+    this.round = 1;
+    this.displayRound();
     this.displaySequence();
     this.enableInput();
   },
   nextRound: function() {
     this.disableInput();
     this.roundNumber++;
+    this.displayRound();
     this.simon.sequence = generateRound(this.simon.sequence, 1);
     this.player.sequence =  [];
     this.displaySequence();
@@ -43,7 +46,7 @@ var round = {
     }
   )},
   displayRound: function() {
-    $("")
+    $(".round").text(`Round: ${this.roundNumber}`);
   },
   enableInput: function() {
     $("body").on("keydown", getKeyCode);
