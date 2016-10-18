@@ -44,7 +44,7 @@ var round = {
         setTimeout(function() {
           $(`.${element}`).toggleClass("active");
         }, 50 * index + 50)
-      }, 400 * index + 100);
+      }, 600 * index + 100);
     }
   )},
   displayRound: function() {
