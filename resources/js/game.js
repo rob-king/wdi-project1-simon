@@ -43,8 +43,8 @@ var round = {
         $(`.${element}`).toggleClass("active");
         setTimeout(function() {
           $(`.${element}`).toggleClass("active");
-        }, 50 * index + 50)
-      }, 600 * index + 100);
+        }, 50 * index + 150)
+      }, 800 * index + 100);
     }
   )},
   displayRound: function() {
