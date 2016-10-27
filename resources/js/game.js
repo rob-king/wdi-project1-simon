@@ -1,5 +1,7 @@
 const colors = ['red', 'blue', 'yellow', 'green'];
 
+
+// I might opt for a constructor function here in place of an object literal declaration.
 var round = {
   simon:{sequence:[]},
   player:{sequence:[]},
@@ -71,6 +73,7 @@ var round = {
       that.checkResult();
     }, 120000);
 
+    // a less costly method would be to call compare whenever you push a user choice to the player sequence, but I'm guessing this might've been a workaround for some issue
     var inputPolling = setInterval(function() {
       if (that.player.sequence.length > 0) {
         if (that.simon.sequence.length === that.player.sequence.length)
@@ -92,12 +95,16 @@ var round = {
 
 $(document).ready(function() {
   $("#startGame").on("click", round.startGame.bind(round));
+  // I might opt for referencing a constructor function here, rather than pre-binding your object literal that stored.
 });
 
 function compare(simon, player) {
+  // haha awesome. I'd consider just writing some of the lodash methods from scratch, just so you aren't dependant on a library, but I think you could and just wanted to write less code
   return _.isEqual(simon, player);
 }
 
+// might be slightly more semnatic to call this generateSequence
+// nice maintainability feature with taking in an input to generate the initial sequence
 function sequence(n) {
   var result = [];
   for (var i = 0; i < n; i++) {
@@ -107,6 +114,7 @@ function sequence(n) {
   return _.shuffle(result);
 }
 
+// It's cool that in theory you could have a difficulty setting that would increase the number of sequential colors by more than (say, 3 at a time) but some might argue this is potentially overengineering--minor note, just food for thought.
 function generateRound(base_seq, extend_by) {
   return _.concat(base_seq, sequence(extend_by));
 }
